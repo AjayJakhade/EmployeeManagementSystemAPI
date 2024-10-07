@@ -14,12 +14,12 @@ namespace EmployeeManagementSystemAPI.Controllers
             _employeeService = employeeService;
         }
         [HttpGet("GetEmployee")]
-        public async Task<ActionResult<BaseResponse>> GetEmployee()
+        public async Task<ActionResult<BaseResponse>> GetEmployee([FromQuery] EmployeeSearch employee )
         {
             BaseResponse response = new BaseResponse();
             try
             {
-                response = await _employeeService.GetEmployee();
+                response = await _employeeService.GetEmployee(employee);
                 if (!response.IsSuccess)
                 {
                     return response;

@@ -19,4 +19,12 @@ namespace EMS.BuisnessLayer.Models
         public int DeptId { get; set; }
        
     }
+    public class EmployeeSearch
+    {
+
+        public string? FirstName { get; set; }
+        public string? Email { get; set; }
+
+
+    }
 }

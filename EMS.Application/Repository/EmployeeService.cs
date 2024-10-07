@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace EMS.Application.Repository
 {
@@ -85,7 +86,7 @@ namespace EMS.Application.Repository
             return response;
         }
 
-        public async Task<BaseResponse> GetEmployee()
+        public async Task<BaseResponse> GetEmployee(EmployeeSearch employeeSearch)
         {
             BaseResponse response = new BaseResponse();
             try
@@ -107,6 +108,16 @@ namespace EMS.Application.Repository
                                      employee.Phone,
                                      employee.Position
                                  };
+
+                if (!string.IsNullOrWhiteSpace(employeeSearch.FirstName))
+                {
+                    salryquery = salryquery.Where(x => x.FirstName.Contains(employeeSearch.FirstName));
+                }
+
+                if (!string.IsNullOrWhiteSpace(employeeSearch.Email))
+                {
+                    salryquery = salryquery.Where(x => x.Email.Contains(employeeSearch.Email));
+                }
                 response.result = await salryquery.ToListAsync();
                 if (response.result != null)
                 {

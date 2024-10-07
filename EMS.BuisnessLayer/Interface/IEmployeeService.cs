@@ -9,7 +9,7 @@ namespace EMS.BuisnessLayer.Interface
 {
     public interface IEmployeeService
     {
-        Task<BaseResponse> GetEmployee();
+        Task<BaseResponse> GetEmployee(EmployeeSearch employeeSearch);
         Task<BaseResponse> CreateEmployee(Employee employee);
         Task<BaseResponse> UpdateEmployee(Employee employee);
         Task<BaseResponse> DeleteEmployee(int employeeid);
